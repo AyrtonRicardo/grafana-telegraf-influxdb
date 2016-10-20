@@ -22,6 +22,8 @@ services:
     image: telegraf
     volumes:
       - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - apache
     links:
       - apache
     networks:
@@ -30,12 +32,16 @@ services:
 
   grafana:
     image: grafana/grafana
+    depends_on:
+      - influxdb
     links:
       - influxdb
     ports:
       - '3000:3000'
-    command:
-      - '--config=./default.ini'
+    volumes:
+      - ./dashboards:/val/lib/grafana/dashboards
+    environment:
+      - GF_DASHBOARDS_JSON_ENABLED=true
 
 networks:
   influxdb:
