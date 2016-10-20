@@ -2,7 +2,7 @@ telegraf:
   image: telegraf
   container_name: telegraf 
   volumes:
-   - telegraf.conf:/etc/opt/influxdb/telegraf.conf:ro
+   - ./telegraf.conf:/etc/opt/influxdb/telegraf.conf:ro
   links:
     - influxdb
 
