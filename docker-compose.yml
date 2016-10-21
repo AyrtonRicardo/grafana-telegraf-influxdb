@@ -39,7 +39,7 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - ./dashboards:/val/lib/grafana/dashboards
+      - ./dashboards:/var/lib/grafana/dashboards
     environment:
       - GF_DASHBOARDS_JSON_ENABLED=true
 
