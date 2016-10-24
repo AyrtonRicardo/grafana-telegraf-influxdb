@@ -44,6 +44,7 @@ services:
       - ./dashboards:/var/lib/grafana/dashboards
     environment:
       - GF_DASHBOARDS_JSON_ENABLED=true
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel
 
 networks:
   influxdb:
