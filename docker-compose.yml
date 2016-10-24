@@ -1,17 +1,6 @@
 version: '2'
 
 services:
-  apache:
-    image: eboraas/apache
-    extra_hosts:
-      - 'apache:$IP'
-    volumes:
-      - ./status.conf:/etc/apache2/mods-enabled/status.conf
-    ports:
-      - "9002:80"
-    networks:
-      - apache
-
   influxdb:
     image: influxdb
     ports:
@@ -22,15 +11,12 @@ services:
 
   telegraf:
     image: telegraf
+    extra_hosts:
+      - 'apache:$IP'
     volumes:
       - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
-    depends_on:
-      - apache
-    links:
-      - apache
     networks:
       - influxdb
-      - apache
 
   grafana:
     image: grafana/grafana
@@ -47,6 +33,4 @@ services:
 
 networks:
   influxdb:
-    driver: bridge
-  apache:
     driver: bridge
