@@ -2,4 +2,4 @@
 
 export IP=$(hostname -I | awk '{print $1}');
 
-docker-compose up -d
+docker-compose up
