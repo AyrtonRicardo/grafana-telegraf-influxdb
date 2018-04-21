@@ -3,8 +3,6 @@ version: '2'
 services:
   apache:
     image: eboraas/apache
-    extra_hosts:
-      - 'apache:$IP'
     volumes:
       - ./status.conf:/etc/apache2/mods-enabled/status.conf
     ports:
